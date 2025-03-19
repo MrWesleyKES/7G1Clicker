@@ -39,6 +39,29 @@ function loadGame() {
     }
 }
 
+function createParticles(x, y) {
+    for (let i = 0; i < 5; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.width = '10px';
+        particle.style.height = '10px';
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 500);
+    }
+}
+
+function showResourceGain(x, y, amount) {
+    const popup = document.createElement('div');
+    popup.className = 'resource-popup';
+    popup.textContent = '+' + amount.toFixed(1);
+    popup.style.left = x + 'px';
+    popup.style.top = y + 'px';
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 1000);
+}
+
 function updateDisplay() {
     document.getElementById('resources').innerText = resources.toFixed(2);
     document.getElementById('resourceRate').innerText = resourceRate.toFixed(2);
@@ -48,6 +71,12 @@ function updateDisplay() {
     document.getElementById('upgradeCostButton').innerText = upgradeCost.toFixed(2);
     document.getElementById('resourceUpgradeCostButton').innerText = resourceUpgradeCost.toFixed(2);
     document.getElementById('clickPowerUpgradeCostButton').innerText = clickPowerUpgradeCost.toFixed(2);
+
+    // Update progress bars
+    document.getElementById('resourceProgress').style.width = 
+        ((resources % 10) / 10 * 100) + '%';
+    document.getElementById('clickProgress').style.width = 
+        ((clickPower % 10) / 10 * 100) + '%';
 }
 
 function generateResources() {
@@ -55,9 +84,11 @@ function generateResources() {
     document.getElementById('resources').innerText = resources.toFixed(2);
 }
 
-function manualGenerateClickPower() {
+function manualGenerateClickPower(event) {
     clickPower += clickPowerRate;
-    document.getElementById('clickPower').innerText = clickPower.toFixed(2);
+    createParticles(event.clientX, event.clientY);
+    showResourceGain(event.clientX, event.clientY, clickPowerRate);
+    updateDisplay();
 }
 
 function buyUpgrade() {

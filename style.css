@@ -94,3 +94,58 @@ span {
   color: #ff3366;
   font-weight: bold;
 }
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  margin: 5px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(45deg, #ff3366, #ff6b6b);
+  width: 0%;
+  transition: width 0.3s ease-in-out;
+}
+
+.resource-popup {
+  position: absolute;
+  color: #ff3366;
+  font-weight: bold;
+  pointer-events: none;
+  animation: floatUp 1s ease-out forwards;
+  text-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+.particle {
+  position: absolute;
+  pointer-events: none;
+  background: radial-gradient(circle, #ff3366 0%, transparent 70%);
+  border-radius: 50%;
+  animation: particleAnim 0.5s ease-out forwards;
+}
+
+@keyframes particleAnim {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
