@@ -10,27 +10,29 @@
     <div id="game">
         <h1>7G1 Clicker</h1>
         <p>Resources: <span id="resources">0</span></p>
-        <div class="progress-bar"><div id="resourceProgress" class="progress-fill"></div></div>
         <p>Resource Rate: <span id="resourceRate">1</span> per second</p>
         <p>Click Power: <span id="clickPower">0</span></p>
-        <div class="progress-bar"><div id="clickProgress" class="progress-fill"></div></div>
         <p>Click Power Rate: <span id="clickPowerRate">1</span> per click</p>
         <button id="generateButton">Generate Click Power</button>
         <table>
             <tr>
                 <td>
                     <button id="clickProgressButton">Buy Click Progress (Cost: <span id="clickProgressCostButton">5</span>)</button>
+                    <div class="progress-bar"><div id="clickProgressBar" class="progress-fill"></div></div>
                 </td>
                 <td>
                     <button id="upgradeButton">Buy Upgrade (Cost: <span id="upgradeCostButton">10</span>)</button>
+                    <div class="progress-bar"><div id="upgradeBar" class="progress-fill"></div></div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <button id="resourceUpgradeButton">Buy Resource Upgrade (Cost: <span id="resourceUpgradeCostButton">20</span>)</button>
+                    <div class="progress-bar"><div id="resourceUpgradeBar" class="progress-fill"></div></div>
                 </td>
                 <td>
                     <button id="clickPowerUpgradeButton">Buy Click Power Upgrade (Cost: <span id="clickPowerUpgradeCostButton">15</span>)</button>
+                    <div class="progress-bar"><div id="clickPowerUpgradeBar" class="progress-fill"></div></div>
                 </td>
             </tr>
     </table>

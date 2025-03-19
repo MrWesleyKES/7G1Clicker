@@ -72,11 +72,15 @@ function updateDisplay() {
     document.getElementById('resourceUpgradeCostButton').innerText = resourceUpgradeCost.toFixed(2);
     document.getElementById('clickPowerUpgradeCostButton').innerText = clickPowerUpgradeCost.toFixed(2);
 
-    // Update progress bars
-    document.getElementById('resourceProgress').style.width = 
-        ((resources % 10) / 10 * 100) + '%';
-    document.getElementById('clickProgress').style.width = 
-        ((clickPower % 10) / 10 * 100) + '%';
+    // Update progress bars for upgrades
+    document.getElementById('clickProgressBar').style.width = 
+        Math.min((clickPower / clickProgressCost) * 100, 100) + '%';
+    document.getElementById('upgradeBar').style.width = 
+        Math.min((resources / upgradeCost) * 100, 100) + '%';
+    document.getElementById('resourceUpgradeBar').style.width = 
+        Math.min((clickPower / resourceUpgradeCost) * 100, 100) + '%';
+    document.getElementById('clickPowerUpgradeBar').style.width = 
+        Math.min((resources / clickPowerUpgradeCost) * 100, 100) + '%';
 }
 
 function generateResources() {
