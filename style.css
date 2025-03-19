@@ -1,4 +1,64 @@
-html {
-  height: 100%;
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000; /* Black background */
+  margin: 0;
+  color: #fff; /* White text */
+}
+
+#game {
+  text-align: center;
+  background-color: #333; /* Dark grey background for the game container */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#generateButton {
+  display: block;
+  margin: 20px auto; /* Center the button */
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000; /* Red button */
+  color: #fff; /* White text on button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.1s; /* Smooth transition for the animation */
+}
+
+#generateButton:active {
+  transform: scale(0.9); /* Scale down the button when clicked */
+}
+
+table {
   width: 100%;
+  margin-top: 20px;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000; /* Red buttons */
+  color: #fff; /* White text on buttons */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.1s; /* Smooth transition for the animation */
+}
+
+button:active {
+  transform: scale(0.9); /* Scale down the button when clicked */
+}
+
+button:hover {
+  background-color: #cc0000; /* Darker red on hover */
 }
