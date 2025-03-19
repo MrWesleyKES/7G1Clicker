@@ -159,3 +159,21 @@ document.getElementById('saveButton').addEventListener('click', () => {
     saveGame();
     alert('Game saved!');
 });
+
+function resetGame() {
+    if (confirm('Are you sure you want to reset? This will erase all progress!')) {
+        resources = 0;
+        resourceRate = 1;
+        upgradeCost = 10;
+        clickPower = 0;
+        clickPowerRate = 1;
+        clickProgressCost = 5;
+        resourceUpgradeCost = 20;
+        clickPowerUpgradeCost = 15;
+        localStorage.removeItem('gameState');
+        updateDisplay();
+        alert('Game reset complete!');
+    }
+}
+
+document.getElementById('resetButton').addEventListener('click', resetGame);
