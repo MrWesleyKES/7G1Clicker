@@ -85,7 +85,7 @@ function updateDisplay() {
 
 function generateResources() {
     resources += resourceRate;
-    document.getElementById('resources').innerText = resources.toFixed(2);
+    updateDisplay();
 }
 
 function manualGenerateClickPower(event) {
