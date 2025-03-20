@@ -45,10 +45,10 @@ function loadGame() {
     }
 }
 
-function createParticles(x, y) {
+function createParticles(x, y, isBadWork) {
     for (let i = 0; i < 5; i++) {
         const particle = document.createElement('div');
-        particle.className = 'particle';
+        particle.className = isBadWork ? 'particle bad' : 'particle';
         particle.style.left = x + 'px';
         particle.style.top = y + 'px';
         particle.style.width = '10px';
@@ -73,6 +73,15 @@ function updateDisplay() {
         document.getElementById('badWorkCounter').style.display = 'block';
         document.getElementById('removeBadWorkButton').style.display = 'block';
         document.getElementById('badWork').innerText = badWork.toFixed(0);
+        
+        const generateButton = document.getElementById('generateButton');
+        if (badWork >= clickPowerRate) {
+            generateButton.textContent = 'Generate Bad Work';
+            generateButton.style.background = 'linear-gradient(45deg, #ff0000, #990000)';
+        } else {
+            generateButton.textContent = 'Generate Good Work';
+            generateButton.style.background = 'linear-gradient(45deg, #ff3366, #ff6b6b)';
+        }
     }
     document.getElementById('resources').innerText = resources.toFixed(2);
     document.getElementById('resourceRate').innerText = resourceRate.toFixed(2);
@@ -100,15 +109,22 @@ function generateResources() {
 }
 
 function manualGenerateClickPower(event) {
-    if (Math.random() < 0.01) { // 1% chance of Bad Work
+    if (badWork >= clickPowerRate) {
+        // Generate bad work when bad work exceeds good work rate
         badWork++;
         badWorkUnlocked = true;
-        clickPowerRate = Math.max(1, clickPowerRate - 1); // Reduce good work rate, minimum 1
-        createParticles(event.clientX, event.clientY);
+        clickPowerRate = Math.max(1, clickPowerRate - 1);
+        createParticles(event.clientX, event.clientY, true);
+        showResourceGain(event.clientX, event.clientY, -1);
+    } else if (Math.random() < 0.01) { // 1% chance of Bad Work
+        badWork++;
+        badWorkUnlocked = true;
+        clickPowerRate = Math.max(1, clickPowerRate - 1);
+        createParticles(event.clientX, event.clientY, true);
         showResourceGain(event.clientX, event.clientY, -1);
     } else {
         clickPower += clickPowerRate;
-        createParticles(event.clientX, event.clientY);
+        createParticles(event.clientX, event.clientY, false);
         showResourceGain(event.clientX, event.clientY, clickPowerRate);
     }
     updateDisplay();
