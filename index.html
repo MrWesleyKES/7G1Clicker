@@ -9,14 +9,14 @@
 <body>
     <div id="game">
         <h1>7G1 Clicker</h1>
-        <p>Time: <span id="resources">0</span></p>
-        <p>Time Rate: <span id="resourceRate">1</span> per second</p>
+        <p>Study Points: <span id="resources">0</span></p>
+        <p>Study Rate: <span id="resourceRate">1</span> per second</p>
         <p>Good Work: <span id="clickPower">0</span></p>
         <p>Good Work Rate: <span id="clickPowerRate">1</span> per click</p>
         <button id="generateButton">Generate Good Work</button>
         <div class="tabs">
             <button class="tab-button active" onclick="openTab('clickPowerTab')">Good Work Upgrades</button>
-            <button class="tab-button" onclick="openTab('resourceTab')">Time Upgrades</button>
+            <button class="tab-button" onclick="openTab('resourceTab')">Study Upgrades</button>
         </div>
         <div id="clickPowerTab" class="tab-content active">
             <table>
@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <button id="resourceUpgradeButton">Buy Time Upgrade (Cost: <span id="resourceUpgradeCostButton">20</span>)</button>
+                        <button id="resourceUpgradeButton">Buy Study Upgrade (Cost: <span id="resourceUpgradeCostButton">20</span>)</button>
                         <div class="progress-bar"><div id="resourceUpgradeBar" class="progress-fill"></div></div>
                     </td>
                 </tr>
