@@ -120,7 +120,7 @@ function buyClickProgress() {
 function buyResourceUpgrade() {
     if (clickPower >= resourceUpgradeCost) {
         clickPower -= resourceUpgradeCost;
-        resourceRate += 2;  // Increase resource generation rate
+        resourceRate += 2;  // Increase time generation rate
         resourceUpgradeCost += Math.log(resourceUpgradeCost + 1) * 5;  // Reduced multiplier for slower progression
         document.getElementById('clickPower').innerText = clickPower.toFixed(2);
         document.getElementById('resourceRate').innerText = resourceRate.toFixed(2);
