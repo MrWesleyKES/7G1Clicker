@@ -177,3 +177,18 @@ function resetGame() {
 }
 
 document.getElementById('resetButton').addEventListener('click', resetGame);
+
+function openTab(tabName) {
+    const tabContents = document.getElementsByClassName('tab-content');
+    for (let content of tabContents) {
+        content.classList.remove('active');
+    }
+    
+    const tabButtons = document.getElementsByClassName('tab-button');
+    for (let button of tabButtons) {
+        button.classList.remove('active');
+    }
+    
+    document.getElementById(tabName).classList.add('active');
+    event.target.classList.add('active');
+}
