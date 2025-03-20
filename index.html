@@ -13,7 +13,9 @@
         <p>Study Rate: <span id="resourceRate">1</span> per second</p>
         <p>Good Work: <span id="clickPower">0</span></p>
         <p>Good Work Rate: <span id="clickPowerRate">1</span> per click</p>
+        <p id="badWorkCounter" style="display: none; color: #ff4444;">Bad Work: <span id="badWork">0</span></p>
         <button id="generateButton">Generate Good Work</button>
+        <button id="removeBadWorkButton" onclick="removeBadWork()" style="display: none; background: rgba(255, 0, 0, 0.2);">Remove Bad Work</button>
         <div class="tabs">
             <button class="tab-button active" onclick="openTab('clickPowerTab')">Good Work Upgrades</button>
             <button class="tab-button" onclick="openTab('resourceTab')">Study Upgrades</button>

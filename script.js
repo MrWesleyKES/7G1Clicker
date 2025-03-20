@@ -8,6 +8,8 @@ let clickProgressCost = 5;
 
 let resourceUpgradeCost = 20;
 let clickPowerUpgradeCost = 15;
+let badWork = 0;
+let badWorkUnlocked = false;
 
 function saveGame() {
     const gameState = {
@@ -18,7 +20,9 @@ function saveGame() {
         clickPowerRate,
         clickProgressCost,
         resourceUpgradeCost,
-        clickPowerUpgradeCost
+        clickPowerUpgradeCost,
+        badWork,
+        badWorkUnlocked
     };
     localStorage.setItem('gameState', JSON.stringify(gameState));
 }
@@ -35,6 +39,8 @@ function loadGame() {
         clickProgressCost = gameState.clickProgressCost;
         resourceUpgradeCost = gameState.resourceUpgradeCost;
         clickPowerUpgradeCost = gameState.clickPowerUpgradeCost;
+        badWork = gameState.badWork || 0;
+        badWorkUnlocked = gameState.badWorkUnlocked || false;
         updateDisplay();
     }
 }
@@ -63,6 +69,11 @@ function showResourceGain(x, y, amount) {
 }
 
 function updateDisplay() {
+    if (badWorkUnlocked) {
+        document.getElementById('badWorkCounter').style.display = 'block';
+        document.getElementById('removeBadWorkButton').style.display = 'block';
+        document.getElementById('badWork').innerText = badWork.toFixed(0);
+    }
     document.getElementById('resources').innerText = resources.toFixed(2);
     document.getElementById('resourceRate').innerText = resourceRate.toFixed(2);
     document.getElementById('clickPower').innerText = clickPower.toFixed(2);
@@ -89,10 +100,27 @@ function generateResources() {
 }
 
 function manualGenerateClickPower(event) {
-    clickPower += clickPowerRate;
-    createParticles(event.clientX, event.clientY);
-    showResourceGain(event.clientX, event.clientY, clickPowerRate);
+    if (Math.random() < 0.01) { // 1% chance of Bad Work
+        badWork++;
+        badWorkUnlocked = true;
+        clickPowerRate = Math.max(1, clickPowerRate - 1); // Reduce good work rate, minimum 1
+        createParticles(event.clientX, event.clientY);
+        showResourceGain(event.clientX, event.clientY, -1);
+    } else {
+        clickPower += clickPowerRate;
+        createParticles(event.clientX, event.clientY);
+        showResourceGain(event.clientX, event.clientY, clickPowerRate);
+    }
     updateDisplay();
+}
+
+function removeBadWork() {
+    if (resources >= badWork && badWork > 0) {
+        resources -= badWork;
+        clickPowerRate += badWork; // Restore good work rate
+        badWork = 0;
+        updateDisplay();
+    }
 }
 
 function buyUpgrade() {
