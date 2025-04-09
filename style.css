@@ -180,3 +180,18 @@ span {
 .tab-content.active {
   display: block;
 }
+
+/* Add this CSS to style.css */
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centers the buttons horizontally */
+  gap: 10px; /* Adds space between the buttons */
+  margin-top: 20px; /* Adds some space above the container */
+}
+
+/* Optional: adjust button styles if needed */
+.button-container button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+}
